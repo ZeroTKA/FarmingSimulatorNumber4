@@ -5,7 +5,7 @@ using UnityEngine;
 // 2. Mouse Look
 // 3. Sprinting
 // 4. Specific for Hotkeys?? Do I need to even do that?
-// 5. Environment Scaling / Player Scaling
+// 5. Environment Scaling / Player Scaling 2.7.25
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 move;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        characterController = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<CharacterController>();
+        characterController = gameObject.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         move = new Vector3(Input.GetAxis("Horizontal"), move.y, Input.GetAxis("Vertical"));
 
-        // Apply gravity BEFORE jumping
+        // Apply gravity BEFORE jumping else gravity is setting your y to basically 0 which means no jump
         Gravity();
         Jump();
 
