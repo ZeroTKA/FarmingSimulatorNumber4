@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpHeight;
+
     CharacterController characterController;
     private float gravity = -9.81f;
     private Vector3 move;
+    private Vector3 velocity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -30,14 +32,15 @@ public class PlayerController : MonoBehaviour
     //-- Main Functions --//
     void PlayerMovement()
     {
-        move = new Vector3(Input.GetAxis("Horizontal"), move.y, Input.GetAxis("Vertical"));
+        Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        move = transform.right * moveDir.x + transform.forward * moveDir.z;
 
         // Apply gravity BEFORE jumping else gravity is setting your y to basically 0 which means no jump
         Gravity();
         Jump();
 
         // Move the character
-        characterController.Move(move * Time.deltaTime * moveSpeed);
+        characterController.Move((move * moveSpeed + velocity) * Time.deltaTime);
     }
 
     //-- Sub Functions --//
@@ -45,19 +48,19 @@ public class PlayerController : MonoBehaviour
     {
         if (characterController.isGrounded && Input.GetButtonDown("Jump"))
         {
-            move.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+            velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
     }
+
     void Gravity()
     {
         if (!characterController.isGrounded)
         {
-            move.y += gravity * Time.deltaTime;
+            velocity.y += gravity * Time.deltaTime;
         }
         else
         {
-            move.y = -0.2f;
+            velocity.y = -0.2f;
         }
     }
-
 }
