@@ -3,15 +3,10 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    // -- To Do List -- //
 
     [SerializeField] GameObject InventoryMenu;
     private bool isMenuActivated;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -20,5 +15,11 @@ public class InventoryManager : MonoBehaviour
             isMenuActivated = !isMenuActivated;
             InventoryMenu.SetActive(isMenuActivated);
         }
+    }
+
+    // -- Main Functions -- //
+    public void AddItem(string itemName, int quantity, Sprite itemIcon)
+    {
+        Debug.Log($"Item added: {itemName} x{quantity} + {itemIcon}");
     }
 }

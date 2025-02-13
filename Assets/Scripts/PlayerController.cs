@@ -2,10 +2,11 @@ using UnityEngine;
 
 //-- To Do List --//
 // 1. Jumping 2.5.25
-// 2. Mouse Look
+// 2. Mouse Look 2.11.25 (script in another file)
 // 3. Sprinting
 // 4. Specific for Hotkeys?? Do I need to even do that?
 // 5. Environment Scaling / Player Scaling 2.7.25
+// 6. Crouching??
 
 public class PlayerController : MonoBehaviour
 {
