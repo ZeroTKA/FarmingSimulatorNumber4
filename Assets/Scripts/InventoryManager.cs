@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] GameObject InventoryMenu;
     private bool isMenuActivated;
+    public ItemSlot[] itemSlot;
     // Update is called once per frame
     void Update()
     {
@@ -20,6 +21,13 @@ public class InventoryManager : MonoBehaviour
     // -- Main Functions -- //
     public void AddItem(string itemName, int quantity, Sprite itemIcon)
     {
-        Debug.Log($"Item added: {itemName} x{quantity} + {itemIcon}");
+        for(int i = 0; i < itemSlot.Length; i++)
+        {
+            if (!itemSlot[i].isSlotFull)
+            {
+                itemSlot[i].AddItem(itemName, quantity, itemIcon);
+                break;
+            }
+        }
     }
 }

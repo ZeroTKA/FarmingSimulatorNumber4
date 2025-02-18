@@ -1,16 +1,31 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // -- Item Data -- //
+    public string itemName;
+    public int quantity;
+    public Sprite itemSprite;
+    public bool isSlotFull;
+
+    // -- Item Slot -- //
+    [SerializeField] private TMP_Text quantityText;
+    [SerializeField] private Image itemImage;
+
+
+    public void AddItem(string itemName, int quantity, Sprite itemSprite)
     {
+        this.itemName = itemName;
+        this.quantity = quantity;
+        this.itemSprite = itemSprite;
+        isSlotFull = true;
+
+        itemImage.sprite = itemSprite;
+        quantityText.text = quantity.ToString();
+        quantityText.gameObject.SetActive(true);
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
