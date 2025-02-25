@@ -9,6 +9,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     // -- To Do List -- //
     // 1. Getting rid of being able to select a slot that has no item.
     // 2. Make sprite emptySprite ACTUALLY empty.
+    // 3. Pass along max number of items to the inventory manager from the ITEM.
 
     // -- Item Data -- //
     public string itemName;
@@ -21,6 +22,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     // -- Item Slot -- //
     [SerializeField] private TMP_Text quantityText;
     [SerializeField] private Image itemImage;
+    [SerializeField] private int maxNumberOfItems;
 
     public GameObject selectedItemOverlay;
     public bool isThisItemSelected;
@@ -40,18 +42,32 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     }
 
 
-    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
-        this.itemName = itemName;
-        this.quantity = quantity;
-        this.itemSprite = itemSprite;
-        this.itemDescription = itemDescription;
-        isSlotFull = true;
+        if (isSlotFull)
+        {
+            return quantity;
+        }
 
+        this.itemName = itemName;
+        this.itemSprite = itemSprite;
         itemImage.sprite = itemSprite;
-        quantityText.text = quantity.ToString();
+        this.itemDescription = itemDescription;
+        this.quantity += quantity;
+        if (this.quantity >= maxNumberOfItems)
+        {
+            quantityText.text = maxNumberOfItems.ToString();
+            quantityText.gameObject.SetActive(true);
+            isSlotFull = true;
+
+            //Return left over items
+            int extraItems = this.quantity - maxNumberOfItems;
+            this.quantity = maxNumberOfItems;
+            return extraItems;
+        }
+        quantityText.text = this.quantity.ToString();
         quantityText.gameObject.SetActive(true);
-        
+        return 0;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -84,15 +100,15 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             _itemDescriptionText.text = itemDescription;
             _itemDescriptionText.gameObject.SetActive(true);
             itemDescriptionImage.sprite = itemSprite;
-            if(itemDescriptionImage.sprite == null)
+            if (itemDescriptionImage.sprite == null)
             {
                 itemDescriptionImage.sprite = emptySprite;
             }
-        }        
+        }
     }
 
     public void OnRightClick()
     {
-        
+
     }
 }
