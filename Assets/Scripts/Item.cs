@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
     [SerializeField] private string itemName;
     [SerializeField] private int quantity;
     [SerializeField] private Sprite itemIcon;
+    [SerializeField][TextArea] private string itemDescription;
 
     private InventoryManager inventoryManager;
 
@@ -22,7 +23,7 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            inventoryManager.AddItem(itemName, quantity, itemIcon);
+            inventoryManager.AddItem(itemName, quantity, itemIcon, itemDescription);
             Destroy(gameObject);
         }
     }
