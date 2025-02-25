@@ -5,17 +5,22 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private Transform playerBody;
     [SerializeField] private float mouseSensitivity;
     private float xRotation = 0f;
+    private bool isMouseLookEnabled;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        isMouseLookEnabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Look();
+        if (isMouseLookEnabled)
+        {
+            Look();
+        }
     }
 
     void Look()
@@ -30,6 +35,11 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         // Rotate the player body left and right
         playerBody.Rotate(Vector3.up * mouseX);
+    }
+
+    public void SetMouseLookStatus(bool status)
+    {
+        isMouseLookEnabled = status;
     }
 
 }

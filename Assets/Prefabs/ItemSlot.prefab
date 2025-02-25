@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1610608129355604011
 RectTransform:
   m_ObjectHideFlags: 0
@@ -233,6 +233,8 @@ MonoBehaviour:
   isSlotFull: 0
   quantityText: {fileID: 122168182898304757}
   itemImage: {fileID: 6066286883612034638}
+  selectedItemOverlay: {fileID: 7824091442949577945}
+  isThisItemSelected: 0
 --- !u!1 &7824091442949577945
 GameObject:
   m_ObjectHideFlags: 0
