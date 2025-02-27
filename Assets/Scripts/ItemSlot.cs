@@ -28,9 +28,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public bool isThisItemSelected;
 
     // -- Item Description -- //
-    public Image itemDescriptionImage;
-    public TMP_Text _itemDescriptionNameText;
-    public TMP_Text _itemDescriptionText;
+    private Image _itemDescriptionImage;
+    private TMP_Text _itemDescriptionNameText;
+    private TMP_Text _itemDescriptionText;
 
 
 
@@ -48,12 +48,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         {
             return quantity;
         }
-
+        
         this.itemName = itemName;
         this.itemSprite = itemSprite;
         itemImage.sprite = itemSprite;
         this.itemDescription = itemDescription;
         this.quantity += quantity;
+
+        // if it doesn't all fit
         if (this.quantity >= maxNumberOfItems)
         {
             quantityText.text = maxNumberOfItems.ToString();
@@ -65,6 +67,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             this.quantity = maxNumberOfItems;
             return extraItems;
         }
+
+        // it all fits.
         quantityText.text = this.quantity.ToString();
         quantityText.gameObject.SetActive(true);
         return 0;
@@ -85,6 +89,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         if (selectedItemOverlay.activeSelf)
         {
+            // If this item is already selected, deselect it. Otherwise, feels weird to keep it selected.
             selectedItemOverlay.SetActive(false);
             isThisItemSelected = false;
             _itemDescriptionNameText.gameObject.SetActive(false);
@@ -92,6 +97,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         }
         else
         {
+            // Have to make sure only one thing is selected at a time.
             inventoryManager.DeselectAllSlots();
             selectedItemOverlay.SetActive(true);
             isThisItemSelected = true;
@@ -99,10 +105,10 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             _itemDescriptionNameText.gameObject.SetActive(true);
             _itemDescriptionText.text = itemDescription;
             _itemDescriptionText.gameObject.SetActive(true);
-            itemDescriptionImage.sprite = itemSprite;
-            if (itemDescriptionImage.sprite == null)
+            _itemDescriptionImage.sprite = itemSprite;
+            if (_itemDescriptionImage.sprite == null)
             {
-                itemDescriptionImage.sprite = emptySprite;
+                _itemDescriptionImage.sprite = emptySprite;
             }
         }
     }

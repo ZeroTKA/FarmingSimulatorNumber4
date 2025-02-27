@@ -7,7 +7,6 @@ public class MouseLook : MonoBehaviour
     private float xRotation = 0f;
     private bool isMouseLookEnabled;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;

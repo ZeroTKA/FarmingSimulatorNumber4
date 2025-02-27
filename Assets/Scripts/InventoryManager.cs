@@ -5,12 +5,13 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     // -- To Do List -- //
+    // 1. Code review everything. 2.26.25
 
     [SerializeField] GameObject InventoryMenu;
     private bool isMenuActivated;
     public ItemSlot[] itemSlot;
     private MouseLook mouseLookScript;
-    // Update is called once per frame
+
     private void Awake()
     {
         mouseLookScript = GameObject.Find("Main Camera").GetComponent<MouseLook>();
@@ -23,6 +24,7 @@ public class InventoryManager : MonoBehaviour
             InventoryMenu.SetActive(isMenuActivated);
             if (isMenuActivated)
             {
+                // I think walking around while menu open is fine but I don't want the camera to rotate.
                 mouseLookScript.SetMouseLookStatus(false);
                 Cursor.lockState = CursorLockMode.Confined;
             }
