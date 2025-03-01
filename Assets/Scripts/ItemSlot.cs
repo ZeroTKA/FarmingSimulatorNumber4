@@ -28,9 +28,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public bool isThisItemSelected;
 
     // -- Item Description -- //
-    private Image _itemDescriptionImage;
-    private TMP_Text _itemDescriptionNameText;
-    private TMP_Text _itemDescriptionText;
+    [SerializeField] Image itemDescriptionImage;
+    [SerializeField] TMP_Text itemDescriptionNameText;
+    [SerializeField] TMP_Text itemDescriptionText;
 
 
 
@@ -87,13 +87,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     }
     public void OnLeftClick()
     {
-        if (selectedItemOverlay.activeSelf)
+        if (isThisItemSelected)
         {
-            // If this item is already selected, deselect it. Otherwise, feels weird to keep it selected.
-            selectedItemOverlay.SetActive(false);
-            isThisItemSelected = false;
-            _itemDescriptionNameText.gameObject.SetActive(false);
-            _itemDescriptionText.gameObject.SetActive(false);
+            inventoryManager.UseItemSO(itemName);
         }
         else
         {
@@ -101,14 +97,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             inventoryManager.DeselectAllSlots();
             selectedItemOverlay.SetActive(true);
             isThisItemSelected = true;
-            _itemDescriptionNameText.text = itemName;
-            _itemDescriptionNameText.gameObject.SetActive(true);
-            _itemDescriptionText.text = itemDescription;
-            _itemDescriptionText.gameObject.SetActive(true);
-            _itemDescriptionImage.sprite = itemSprite;
-            if (_itemDescriptionImage.sprite == null)
+            itemDescriptionNameText.text = itemName;
+            itemDescriptionNameText.gameObject.SetActive(true);
+            itemDescriptionText.text = itemDescription;
+            itemDescriptionText.gameObject.SetActive(true);
+            itemDescriptionImage.sprite = itemSprite;
+            if (itemDescriptionImage.sprite == null)
             {
-                _itemDescriptionImage.sprite = emptySprite;
+                itemDescriptionImage.sprite = emptySprite;
             }
         }
     }

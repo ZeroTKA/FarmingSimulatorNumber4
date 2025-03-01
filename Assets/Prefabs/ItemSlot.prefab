@@ -238,9 +238,6 @@ MonoBehaviour:
   maxNumberOfItems: 7
   selectedItemOverlay: {fileID: 7824091442949577945}
   isThisItemSelected: 0
-  itemDescriptionImage: {fileID: 0}
-  _itemDescriptionNameText: {fileID: 0}
-  _itemDescriptionText: {fileID: 0}
 --- !u!1 &7824091442949577945
 GameObject:
   m_ObjectHideFlags: 0

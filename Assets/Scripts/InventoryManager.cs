@@ -11,6 +11,7 @@ public class InventoryManager : MonoBehaviour
     private bool isMenuActivated;
     public ItemSlot[] itemSlot;
     private MouseLook mouseLookScript;
+    public ItemSO[] itemSO;
 
     private void Awake()
     {
@@ -52,6 +53,17 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return quantity;
+    }
+    public void UseItemSO(string itemName)
+    {
+        for (int i = 0; i < itemSO.Length; i++)
+        {
+            if (itemSO[i].itemName == itemName)
+            {
+                itemSO[i].UseItem();
+                return;
+            }
+        }
     }
 
     public void DeselectAllSlots()
