@@ -87,9 +87,16 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     }
     public void OnLeftClick()
     {
-        if (isThisItemSelected)
+        if (isThisItemSelected & this.quantity > 0)
         {
             inventoryManager.UseItemSO(itemName);
+            this.quantity -= 1;
+            quantityText.text = this.quantity.ToString();
+            if (this.quantity == 0)
+            {
+                EmptySlot();
+                inventoryManager.DeselectAllSlots();
+            }
         }
         else
         {
@@ -111,6 +118,21 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnRightClick()
     {
+
+    }
+
+    public void EmptySlot()
+    {
+        itemImage.sprite = emptySprite;
+
+        itemDescriptionNameText.text = "";
+        itemName = "";
+        itemDescriptionText.text = "";
+        itemDescription = "";
+        itemDescriptionImage.sprite = emptySprite;
+        itemImage.sprite = emptySprite;
+        itemSprite = null;
+
 
     }
 }

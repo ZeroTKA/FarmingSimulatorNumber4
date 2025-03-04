@@ -232,12 +232,15 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isSlotFull: 0
   itemDescription: 
-  emptySprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  emptySprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   quantityText: {fileID: 122168182898304757}
   itemImage: {fileID: 6066286883612034638}
   maxNumberOfItems: 7
   selectedItemOverlay: {fileID: 7824091442949577945}
   isThisItemSelected: 0
+  itemDescriptionImage: {fileID: 0}
+  itemDescriptionNameText: {fileID: 0}
+  itemDescriptionText: {fileID: 0}
 --- !u!1 &7824091442949577945
 GameObject:
   m_ObjectHideFlags: 0
