@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObject/Item")]
 public class ItemSO : ScriptableObject
 {
     public string itemName;
@@ -9,6 +9,7 @@ public class ItemSO : ScriptableObject
 
     public AttributeToChange attributeToChange = new AttributeToChange();
     public int amountToChangeAttribute;
+    public int MaxNumberOfItems;
 
     public void UseItem()
     {
