@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     public ItemSlot[] itemSlot;
     private MouseLook mouseLookScript;
     public ItemSO[] itemSO;
+    public SeedSO[] seedSO;
 
     private void Awake()
     {

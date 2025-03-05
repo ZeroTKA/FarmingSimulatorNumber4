@@ -4404,6 +4404,8 @@ MonoBehaviour:
   - {fileID: 1165690542}
   itemSO:
   - {fileID: 11400000, guid: 47cca04748c7d304a9f48a19816cd584, type: 2}
+  seedSO:
+  - {fileID: 11400000, guid: bece5ad4b40d44e4faf556ddb1a28843, type: 2}
 --- !u!114 &1550608735
 MonoBehaviour:
   m_ObjectHideFlags: 0
